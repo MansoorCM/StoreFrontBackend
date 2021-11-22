@@ -27,11 +27,15 @@ These are the notes from a meeting with the frontend developer that describe wha
 - price
 - [OPTIONAL] category
 
+Table : products (id : integer, name : varchar, price : integer, category: varchar)
+
 #### User
 - id
 - firstName
 - lastName
 - password
+
+Table : users (id : integer, firstname : varchar, lastname : varchar, password: varchar)
 
 #### Orders
 - id
@@ -39,4 +43,6 @@ These are the notes from a meeting with the frontend developer that describe wha
 - quantity of each product in the order
 - user_id
 - status of order (active or complete)
+
+Table : orders (id : integer, product_id : integer (foreign key to Product table), quantity : integer, user_id : integer (foreign key to User table), status : varchar)
 
