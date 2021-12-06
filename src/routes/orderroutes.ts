@@ -1,6 +1,6 @@
 import express, {Request, Response} from 'express';
-// import { verifyAuthToken } from './userroutes';
 import { Order, OrderStore } from '../models/order';
+import { verifyAuthToken } from '../utilities/verifyauthtoken';
 
 const store = new OrderStore();
 
@@ -16,5 +16,5 @@ const show = async(req: Request, res: Response) =>{
 }
 
 export const orderRoutes = (app: express.Application) =>{
-    app.get('/order/:id', show)
+    app.get('/order/:id', verifyAuthToken, show)
 }

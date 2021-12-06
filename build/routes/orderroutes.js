@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.orderRoutes = void 0;
-// import { verifyAuthToken } from './userroutes';
 const order_1 = require("../models/order");
+const verifyauthtoken_1 = require("../utilities/verifyauthtoken");
 const store = new order_1.OrderStore();
 const show = async (req, res) => {
     try {
@@ -16,6 +16,6 @@ const show = async (req, res) => {
     }
 };
 const orderRoutes = (app) => {
-    app.get('/order/:id', show);
+    app.get('/order/:id', verifyauthtoken_1.verifyAuthToken, show);
 };
 exports.orderRoutes = orderRoutes;

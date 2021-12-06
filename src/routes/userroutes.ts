@@ -1,6 +1,7 @@
 import express, {Request, Response} from 'express';
-// import { verifyAuthToken } from './userroutes';
 import { User, UserStore } from '../models/user';
+import Jwt from 'jsonwebtoken';
+import { verifyAuthToken } from '../utilities/verifyauthtoken';
 
 const store = new UserStore();
 
@@ -34,8 +35,10 @@ const create = async(req: Request, res: Response) =>{
         const password = req.body.password as string
         
         const user: User = {firstname: firstname, lastname: lastname, password: password}
-        const result = await store.create(user)
-        res.json(result) 
+        const newUser = await store.create(user)
+
+        const token = Jwt.sign( {result : newUser}, ( process.env.TOKEN_SECRET ) as string)
+        res.json(token) 
     }catch(err){
         res.status(400)
         res.json(err)    
@@ -43,7 +46,7 @@ const create = async(req: Request, res: Response) =>{
 }
 
 export const userRoutes = (app: express.Application) =>{
-    app.get('/user', index)
-    app.get('/user/:id', show)
+    app.get('/user', verifyAuthToken, index)
+    app.get('/user/:id', verifyAuthToken, show)
     app.post('/user', create)
 }

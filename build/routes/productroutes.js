@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.productRoutes = void 0;
 const product_1 = require("../models/product");
-// import { verifyAuthToken } from './userroutes';
+const verifyauthtoken_1 = require("../utilities/verifyauthtoken");
 const store = new product_1.ProductStore();
 const index = async (req, res) => {
     try {
@@ -42,6 +42,6 @@ const create = async (req, res) => {
 const productRoutes = (app) => {
     app.get('/product', index);
     app.get('/product/:id', show);
-    app.post('/product', create);
+    app.post('/product', verifyauthtoken_1.verifyAuthToken, create);
 };
 exports.productRoutes = productRoutes;

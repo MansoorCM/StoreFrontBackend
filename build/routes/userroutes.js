@@ -1,8 +1,12 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.userRoutes = void 0;
-// import { verifyAuthToken } from './userroutes';
 const user_1 = require("../models/user");
+const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
+const verifyauthtoken_1 = require("../utilities/verifyauthtoken");
 const store = new user_1.UserStore();
 const index = async (req, res) => {
     try {
@@ -31,8 +35,9 @@ const create = async (req, res) => {
         const lastname = req.body.lastname;
         const password = req.body.password;
         const user = { firstname: firstname, lastname: lastname, password: password };
-        const result = await store.create(user);
-        res.json(result);
+        const newUser = await store.create(user);
+        const token = jsonwebtoken_1.default.sign({ result: newUser }, (process.env.TOKEN_SECRET));
+        res.json(token);
     }
     catch (err) {
         res.status(400);
@@ -40,8 +45,8 @@ const create = async (req, res) => {
     }
 };
 const userRoutes = (app) => {
-    app.get('/user', index);
-    app.get('/user/:id', show);
+    app.get('/user', verifyauthtoken_1.verifyAuthToken, index);
+    app.get('/user/:id', verifyauthtoken_1.verifyAuthToken, show);
     app.post('/user', create);
 };
 exports.userRoutes = userRoutes;
