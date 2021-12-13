@@ -1,4 +1,3 @@
-// @ts-ignore
 import Client from '../database'
 
 export type Product = {
@@ -55,4 +54,19 @@ export class ProductStore {
         throw new Error(`Could not add product ${product.name}. Error: ${err}`)
     }
   }
+
+    //for testing purposes only and not used for any endpoints.
+    async deleteAll(): Promise<void> {
+      try{
+        const sql = 'DELETE FROM products'
+
+        const conn = await Client.connect()
+        await conn.query(sql)
+        conn.release();
+
+      }catch(err){
+        throw new Error(`could not delete all product records. Error ${err}`)
+      }
+  }
+
 }

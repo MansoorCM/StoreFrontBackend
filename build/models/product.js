@@ -4,7 +4,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ProductStore = void 0;
-// @ts-ignore
 const database_1 = __importDefault(require("../database"));
 class ProductStore {
     async index() {
@@ -44,6 +43,18 @@ class ProductStore {
         }
         catch (err) {
             throw new Error(`Could not add product ${product.name}. Error: ${err}`);
+        }
+    }
+    //for testing purposes only and not used for any endpoints.
+    async deleteAll() {
+        try {
+            const sql = 'DELETE FROM products';
+            const conn = await database_1.default.connect();
+            await conn.query(sql);
+            conn.release();
+        }
+        catch (err) {
+            throw new Error(`could not delete all product records. Error ${err}`);
         }
     }
 }

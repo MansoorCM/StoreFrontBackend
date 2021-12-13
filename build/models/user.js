@@ -49,5 +49,17 @@ class UserStore {
             throw new Error(`Could not add user ${user.firstname}. Error: ${err}`);
         }
     }
+    //for testing purposes only and not used for any endpoints.
+    async deleteAll() {
+        try {
+            const sql = 'DELETE FROM users';
+            const conn = await database_1.default.connect();
+            await conn.query(sql);
+            conn.release();
+        }
+        catch (err) {
+            throw new Error(`could not delete all user records. Error ${err}`);
+        }
+    }
 }
 exports.UserStore = UserStore;

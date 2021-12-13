@@ -9,6 +9,7 @@ import { QueryResult } from 'pg';
 dotenv.config()
 
 export type User = {
+  id?: string;
   firstname: string,
   lastname: string,
   password: string;
@@ -67,6 +68,20 @@ export class UserStore {
     } catch (err) {
         throw new Error(`Could not add user ${user.firstname}. Error: ${err}`)
     }
+  }
+
+  //for testing purposes only and not used for any endpoints.
+  async deleteAll(): Promise<void> {
+      try{
+        const sql = 'DELETE FROM users'
+
+        const conn = await Client.connect()
+        await conn.query(sql)
+        conn.release();
+
+      }catch(err){
+        throw new Error(`could not delete all user records. Error ${err}`)
+      }
   }
 
 //   async authenticate(user: User): Promise<User | null>  {

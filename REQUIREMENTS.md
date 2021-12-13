@@ -21,7 +21,7 @@ These are the notes from a meeting with the frontend developer that describe wha
 - [OPTIONAL] Completed Orders by user (args: user id)[token required]
 
 ## Data Shapes
-#### Product
+#### Products
 -  id
 - name
 - price
@@ -29,7 +29,7 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 Table : products (id : integer, name : varchar, price : integer, category: varchar)
 
-#### User
+#### Users
 - id
 - firstName
 - lastName
@@ -39,10 +39,16 @@ Table : users (id : integer, firstname : varchar, lastname : varchar, password: 
 
 #### Orders
 - id
-- id of each product in the order
-- quantity of each product in the order
 - user_id
 - status of order (active or complete)
 
-Table : orders (id : integer, product_id : integer (foreign key to Product table), quantity : integer, user_id : integer (foreign key to User table), status : varchar)
+Table : orders (id : integer, user_id : integer (foreign key to User table), status : varchar)
+
+#### Order_products
+- id
+- id of each product in the order
+- quantity of each product in the order
+- order_id
+
+Table : order_products (id : integer, product_id : integer (foreign key to Product table), quantity : integer, order_id : integer (foreign key to Order table))
 
