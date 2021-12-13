@@ -18,8 +18,8 @@ describe('Order model', () => {
     
     afterAll( async()=> {
         await store.deleteAll();
-        await userStore.deleteAll();
         await productStore.deleteAll();
+        await userStore.deleteAll();
     })
 
     it('should have an show method', async() => {

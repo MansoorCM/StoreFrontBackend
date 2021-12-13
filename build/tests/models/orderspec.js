@@ -14,8 +14,8 @@ describe('Order model', () => {
     const orderproduct = { orderid: 1, quantity: 20, productid: 1 };
     afterAll(async () => {
         await store.deleteAll();
-        await userStore.deleteAll();
         await productStore.deleteAll();
+        await userStore.deleteAll();
     });
     it('should have an show method', async () => {
         expect(store.show).toBeDefined();
