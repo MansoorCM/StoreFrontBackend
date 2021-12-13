@@ -6,6 +6,10 @@ describe('User model', () => {
 
     const user: User = {firstname: 'ray', lastname: 'dalio', password: 'bridgewater123'}
 
+    afterAll( async()=> {
+        await store.deleteAll();
+    })
+
     it('should have an index method', () => {
         expect(store.index).toBeDefined();
     })

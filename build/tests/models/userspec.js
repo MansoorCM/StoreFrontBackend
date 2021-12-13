@@ -4,6 +4,9 @@ const user_1 = require("../../models/user");
 const store = new user_1.UserStore();
 describe('User model', () => {
     const user = { firstname: 'ray', lastname: 'dalio', password: 'bridgewater123' };
+    afterAll(async () => {
+        await store.deleteAll();
+    });
     it('should have an index method', () => {
         expect(store.index).toBeDefined();
     });

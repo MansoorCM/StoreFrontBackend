@@ -12,10 +12,12 @@ describe('Order model', () => {
     const user = { firstname: 'ray', lastname: 'dalio', password: 'bridgewater123' };
     const product = { name: 'product1', price: 20, category: 'premium' };
     const orderproduct = { orderid: 1, quantity: 20, productid: 1 };
-    it('should have an show method', async () => {
+    afterAll(async () => {
         await store.deleteAll();
         await userStore.deleteAll();
         await productStore.deleteAll();
+    });
+    it('should have an show method', async () => {
         expect(store.show).toBeDefined();
     });
     it('should have a create method', () => {
@@ -46,8 +48,5 @@ describe('Order model', () => {
         expect(result.orderid).toEqual(orderproduct.orderid);
         expect(result.quantity).toEqual(orderproduct.quantity);
         expect(result.productid).toEqual(orderproduct.productid);
-        await store.deleteAll();
-        await userStore.deleteAll();
-        await productStore.deleteAll();
     });
 });

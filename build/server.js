@@ -8,8 +8,10 @@ const body_parser_1 = __importDefault(require("body-parser"));
 const userroutes_1 = require("./routes/userroutes");
 const productroutes_1 = require("./routes/productroutes");
 const orderroutes_1 = require("./routes/orderroutes");
+const cors_1 = __importDefault(require("cors"));
 const app = (0, express_1.default)();
 const address = "0.0.0.0:3000";
+app.use((0, cors_1.default)());
 app.use(body_parser_1.default.json());
 app.use(body_parser_1.default.urlencoded({ extended: true }));
 app.get('/', function (req, res) {
@@ -21,3 +23,4 @@ app.listen(3000, function () {
 (0, userroutes_1.userRoutes)(app);
 (0, productroutes_1.productRoutes)(app);
 (0, orderroutes_1.orderRoutes)(app);
+exports.default = app;

@@ -10,15 +10,19 @@ const productStore = new ProductStore();
 
 describe('Order model', () => {
 
+    
     const order: Order = {userid: 1, status: 'active'}
     const user: User = {firstname: 'ray', lastname: 'dalio', password: 'bridgewater123'}
     const product: Product = {name: 'product1', price: 20, category: 'premium'}
     const orderproduct: OrderProduct = {orderid: 1, quantity: 20, productid: 1}
     
-    it('should have an show method', async() => {
+    afterAll( async()=> {
         await store.deleteAll();
         await userStore.deleteAll();
         await productStore.deleteAll();
+    })
+
+    it('should have an show method', async() => {
         expect(store.show).toBeDefined();
     })
     
@@ -56,9 +60,6 @@ describe('Order model', () => {
         expect(result.orderid  as unknown as number).toEqual(orderproduct.orderid);
         expect(result.quantity).toEqual(orderproduct.quantity);
         expect(result.productid  as unknown as number).toEqual(orderproduct.productid);
-        await store.deleteAll();
-        await userStore.deleteAll();
-        await productStore.deleteAll();
     })
 
 })

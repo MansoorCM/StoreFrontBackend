@@ -4,6 +4,9 @@ const product_1 = require("../../models/product");
 const store = new product_1.ProductStore();
 describe('Product model', () => {
     const product = { name: 'product1', price: 20, category: 'premium' };
+    afterAll(async () => {
+        await store.deleteAll();
+    });
     it('should have an index method', () => {
         expect(store.index).toBeDefined();
     });

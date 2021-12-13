@@ -6,6 +6,10 @@ describe('Product model', () => {
 
     const product: Product = {name: 'product1', price: 20, category: 'premium'}
 
+    afterAll( async()=> {
+        await store.deleteAll();
+    })
+
     it('should have an index method', () => {
         expect(store.index).toBeDefined();
     })
