@@ -31,7 +31,7 @@ const create = async(req: Request, res: Response) =>{
 const addProduct = async(req: Request, res: Response) =>{
     try{
         const userid = req.body.id as number
-        const quantity = req.body.quantity as string
+        const quantity = req.body.quantity as number
         const productid = req.body.productid as number
         const result = await store.addProduct(userid, quantity, productid);
         res.send(result)

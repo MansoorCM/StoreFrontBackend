@@ -48,7 +48,7 @@ describe('Order model', () => {
         const newProduct = await productStore.create(product)
         orderproduct.orderid = order.userid
         orderproduct.productid = newProduct.id as unknown as number
-        const result: OrderProduct = await store.addProduct(orderproduct.orderid, orderproduct.quantity as unknown as string,
+        const result: OrderProduct = await store.addProduct(orderproduct.orderid, orderproduct.quantity,
         newProduct.id as unknown as number)
         expect(result.orderid as unknown as number).toEqual(orderproduct.orderid);
         expect(result.quantity).toEqual(orderproduct.quantity);

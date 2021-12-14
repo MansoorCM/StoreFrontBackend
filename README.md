@@ -2,7 +2,56 @@
 
 ## Getting Started
 
-This repo contains a basic Node and Express app to get you started in constructing an API. To get started, clone this repo and run `yarn` in your terminal at the project root.
+NOTE - create 'database.json' and '.env' file. the full contents of those files are given below.
+
+Run 'npm install' to install all the necessary packages.
+
+the backend runs on the port 3000 and the database runs on port 5432.
+
+### To connect to the database.
+    - Set up a container in docker on port 5432. (eg. 'storefrontdb' on port 5432)
+    - Use pgadmin to create a server. 
+    - All the following details are in the database.json file. 
+        - create a database named 'storefront'. user is 'postgres' and password is 'berkshire123' (refer database.json file)
+        - the test database is named 'storefrontdbtest'. user and password is same as above, but this database will be created automatically during testing and will be deleted automatically after testing.
+    - Run 'db-migrate up' to run all the up migrations. this will create all the necessary tables.
+
+### Scripts used.
+    - build - to build the application
+    - start - to run the app.
+    - test - to perform all the tests. this will create the test database, run tests and deletes the database.
+    - droptest - this will drop the test database. Although this is NOT NEEDED FOR THE APPLICATON, in case any tests goes wrong and     the test database is not deleted automatically, this script can be used. It will delete the test database, thus allowing to run the 'test' script without any error. (NOTE - if the test database is not present in the server, this will show an error.)
+
+### The environment variables are listed below. (contents of the .env file)
+    POSTGRES_HOST = 127.0.0.1
+    POSTGRES_DB = storefront
+    POSTGRES_TEST_DB = storefrontdbtest
+    POSTGRES_USER = postgres
+    POSTGRES_PASSWORD = berkshire123
+    ENV = dev
+    BCRYPT_PASSWORD = udacity123fullstack
+    SALT_ROUNDS = 10
+    TOKEN_SECRET = udacityfullstack#*secret
+
+### Contents of the 'database.json' file
+    {
+        "dev": {
+        "driver": "pg",
+        "host": "127.0.0.1",
+        "database": "storefront",
+        "user": "postgres",
+        "password": "berkshire123"
+        },
+        "test": {
+        "driver": "pg",
+        "host": "127.0.0.1",
+        "database": "storefrontdbtest",
+        "user": "postgres",
+        "password": "berkshire123"
+        }
+    }
+
+<!-- This repo contains a basic Node and Express app to get you started in constructing an API. To get started, clone this repo and run `yarn` in your terminal at the project root.
 
 ## Required Technologies
 Your application must make use of the following libraries:
@@ -51,4 +100,4 @@ Add JWT functionality as shown in the course. Make sure that JWTs are required f
 
 Before submitting, make sure that your project is complete with a `README.md`. Your `README.md` must include instructions for setting up and running your project including how you setup, run, and connect to your database. 
 
-Before submitting your project, spin it up and test each endpoint. If each one responds with data that matches the data shapes from the `REQUIREMENTS.md`, it is ready for submission!
+Before submitting your project, spin it up and test each endpoint. If each one responds with data that matches the data shapes from the `REQUIREMENTS.md`, it is ready for submission! -->

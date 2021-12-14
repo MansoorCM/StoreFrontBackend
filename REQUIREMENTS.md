@@ -5,20 +5,22 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 ## API Endpoints
 #### Products
-- Index 
-- Show
-- Create [token required]
-- [OPTIONAL] Top 5 most popular products 
-- [OPTIONAL] Products by category (args: product category)
+- Index                         '/product' [GET]
+- Show                          '/product/:id' [GET]
+- Create (body: name, price, category )[token required]             '/product' [POST]
+- [OPTIONAL] Top 5 most popular products                            [NOT IMPLEMENTED]
+- [OPTIONAL] Products by category (args: product category)          [NOT IMPLEMENTED]
 
 #### Users
-- Index [token required]
-- Show [token required]
-- Create N[token required]
+- Index [token required]                        '/user' [GET]
+- Show [token required]                         '/user/:id' [GET]   
+- Create (body: firstname, lastname, password)  '/user' [POST]
 
 #### Orders
-- Current Order by user (args: user id)[token required]
-- [OPTIONAL] Completed Orders by user (args: user id)[token required]
+- Create order by user  (body: id ( means userid), status as 'active') [token required]            '/order' [POST]
+- Add product to active order (body: id ( means userid), quantity, productid) [token required]      '/order/product' [POST]
+- Current Order by user [token required]                                                            '/order/:id' [GET]
+- [OPTIONAL] Completed Orders by user (args: user id)[token required]                               [NOT IMPLEMENTED]
 
 ## Data Shapes
 #### Products
@@ -33,22 +35,22 @@ Table : products (id : integer, name : varchar, price : integer, category: varch
 - id
 - firstName
 - lastName
-- password
+- password_digest
 
-Table : users (id : integer, firstname : varchar, lastname : varchar, password: varchar)
+Table : users (id : integer, firstname : varchar, lastname : varchar, password_digest: varchar)
 
 #### Orders
 - id
-- user_id
+- userid
 - status of order (active or complete)
 
-Table : orders (id : integer, user_id : integer (foreign key to User table), status : varchar)
+Table : orders (id : integer, userid : integer (foreign key to User table), status : varchar)
 
 #### Order_products
 - id
 - id of each product in the order
 - quantity of each product in the order
-- order_id
+- orderid
 
-Table : order_products (id : integer, product_id : integer (foreign key to Product table), quantity : integer, order_id : integer (foreign key to Order table))
+Table : order_products (id : integer, productid : integer (foreign key to Product table), quantity : integer, orderid : integer (foreign key to Order table))
 

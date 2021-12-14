@@ -54,7 +54,7 @@ export class OrderStore {
     }
   }
 
-  async addProduct(userid: number, quantity: string, productid: number): Promise<OrderProduct> {
+  async addProduct(userid: number, quantity: number, productid: number): Promise<OrderProduct> {
     try {
 
         const ordersql = 'SELECT * FROM orders WHERE userid=($1) AND status=($2)'
