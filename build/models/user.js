@@ -4,11 +4,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserStore = void 0;
-// @ts-ignore
 const database_1 = __importDefault(require("../database"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const bcrypt_1 = __importDefault(require("bcrypt"));
-// import { Order } from './order';
 dotenv_1.default.config();
 const { BCRYPT_PASSWORD, SALT_ROUNDS } = process.env;
 class UserStore {

@@ -9,7 +9,7 @@ const server_1 = __importDefault(require("../../server"));
 const user_1 = require("../../models/user");
 const order_1 = require("../../models/order");
 const request = (0, supertest_1.default)(server_1.default);
-describe('product route', () => {
+describe('Order route', () => {
     let token;
     const productStore = new product_1.ProductStore();
     const userStore = new user_1.UserStore();

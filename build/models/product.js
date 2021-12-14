@@ -8,7 +8,6 @@ const database_1 = __importDefault(require("../database"));
 class ProductStore {
     async index() {
         try {
-            // @ts-ignore
             const conn = await database_1.default.connect();
             const sql = 'SELECT * FROM products';
             const result = await conn.query(sql);
@@ -22,7 +21,6 @@ class ProductStore {
     async show(id) {
         try {
             const sql = 'SELECT * FROM products WHERE id=($1)';
-            // @ts-ignore
             const conn = await database_1.default.connect();
             const result = await conn.query(sql, [id]);
             conn.release();
@@ -35,7 +33,6 @@ class ProductStore {
     async create(product) {
         try {
             const sql = `INSERT INTO products (name, price, category) VALUES($1, $2, $3) RETURNING *`;
-            // @ts-ignore
             const conn = await database_1.default.connect();
             const result = await conn.query(sql, [
                 product.name,

@@ -1,5 +1,3 @@
-// @ts-ignore
-import { QueryResult } from 'pg';
 import Client from '../database';
 
 export type Order = {

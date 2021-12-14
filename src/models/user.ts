@@ -1,9 +1,6 @@
-// @ts-ignore
 import Client from '../database';
 import dotenv from 'dotenv';
 import bcrypt from 'bcrypt';
-import { QueryResult } from 'pg';
-// import { Order } from './order';
 
 dotenv.config();
 
@@ -85,27 +82,4 @@ export class UserStore {
       throw new Error(`could not delete all user records. Error ${err}`);
     }
   }
-
-  //   async authenticate(user: User): Promise<User | null>  {
-  //       try{
-  //         const sql = 'SELECT * FROM users WHERE username = ($1)';
-  //         const conn = await Client.connect()
-
-  //         const result = await conn.query(sql, [user.username])
-
-  //         conn.release();
-
-  //         if(result.rows.length){
-  //           const retrivedUser = result.rows[0]
-  //           if(bcrypt.compareSync(user.password + BCRYPT_PASSWORD, retrivedUser.password_digest)){
-  //             return retrivedUser;
-  //           }
-  //         }
-
-  //         return null
-
-  //       }catch(err){
-  //         throw new Error(`username or password is incorrect. Error is ${err}`)
-  //       }
-  //   }
 }

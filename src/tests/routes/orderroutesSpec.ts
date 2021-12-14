@@ -6,7 +6,7 @@ import { Order, OrderStore } from '../../models/order';
 
 const request = supertest(app);
 
-describe('product route', () => {
+describe('Order route', () => {
   let token: string;
   const productStore = new ProductStore();
   const userStore = new UserStore();
