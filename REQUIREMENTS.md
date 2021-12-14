@@ -22,6 +22,8 @@ These are the notes from a meeting with the frontend developer that describe wha
 - Current Order by user [token required]                                                            '/order/:id' [GET]
 - [OPTIONAL] Completed Orders by user (args: user id)[token required]                               [NOT IMPLEMENTED]
 
+Note - the body args are send as 'x-www-form-urlencoded.' 
+
 ## Data Shapes
 #### Products
 -  id
