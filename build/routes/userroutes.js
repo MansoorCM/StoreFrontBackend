@@ -34,9 +34,13 @@ const create = async (req, res) => {
         const firstname = req.body.firstname;
         const lastname = req.body.lastname;
         const password = req.body.password;
-        const user = { firstname: firstname, lastname: lastname, password: password };
+        const user = {
+            firstname: firstname,
+            lastname: lastname,
+            password: password,
+        };
         const newUser = await store.create(user);
-        const token = jsonwebtoken_1.default.sign({ result: newUser }, (process.env.TOKEN_SECRET));
+        const token = jsonwebtoken_1.default.sign({ result: newUser }, process.env.TOKEN_SECRET);
         res.json(token);
     }
     catch (err) {

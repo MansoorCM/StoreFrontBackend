@@ -9,7 +9,11 @@ const userStore = new user_1.UserStore();
 const productStore = new product_1.ProductStore();
 describe('Order model', () => {
     const order = { userid: 1, status: 'active' };
-    const user = { firstname: 'ray', lastname: 'dalio', password: 'bridgewater123' };
+    const user = {
+        firstname: 'ray',
+        lastname: 'dalio',
+        password: 'bridgewater123',
+    };
     const product = { name: 'product1', price: 20, category: 'premium' };
     const orderproduct = { orderid: 1, quantity: 20, productid: 1 };
     afterAll(async () => {

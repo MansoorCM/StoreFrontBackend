@@ -10,7 +10,7 @@ const dotenv_1 = __importDefault(require("dotenv"));
 const bcrypt_1 = __importDefault(require("bcrypt"));
 // import { Order } from './order';
 dotenv_1.default.config();
-const { BCRYPT_PASSWORD, SALT_ROUNDS, } = process.env;
+const { BCRYPT_PASSWORD, SALT_ROUNDS } = process.env;
 class UserStore {
     async index() {
         try {
@@ -41,7 +41,11 @@ class UserStore {
             const sql = `INSERT INTO users (firstname, lastname, password_digest) VALUES($1, $2, $3) RETURNING *`;
             const conn = await database_1.default.connect();
             const hash = bcrypt_1.default.hashSync(user.password + BCRYPT_PASSWORD, parseInt(SALT_ROUNDS));
-            const result = await conn.query(sql, [user.firstname, user.lastname, hash]);
+            const result = await conn.query(sql, [
+                user.firstname,
+                user.lastname,
+                hash,
+            ]);
             conn.release();
             return result.rows[0];
         }

@@ -15,7 +15,7 @@ class OrderStore {
                 return [];
             }
             const orderproductssql = 'SELECT * FROM order_products WHERE orderid=($1)';
-            const result = (await conn.query(orderproductssql, [order.id]));
+            const result = await conn.query(orderproductssql, [order.id]);
             const orderproducts = result.rows;
             conn.release();
             return orderproducts;
